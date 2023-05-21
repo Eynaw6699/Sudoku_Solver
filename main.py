@@ -39,9 +39,9 @@ for i in range(9):
 
 _ = display_numbers_on_board(board, puzzle, cell_locs)
 while 1:
-    res = input('Are all numbers predicted correctly? (y/n)')
+    res = input('Check all given numbers are predicted correctly? (y/n)')
     if res == 'n':
-        cx, cy, ele = input('Input row no, col no, correct element of cell For eg. --> 1 2 1:  ').split()
+        cx, cy, ele = input('Input row no, col no, the correct number of cell (counting starts from 0) For eg. --> 1 2 1 :  ').split()
         try:
             board[int(cx), int(cy)] = int(ele)
         except:
@@ -54,6 +54,6 @@ while 1:
 
 solved = solveSudoku(board)
 x = display_numbers_on_board(board, puzzle, cell_locs)
-cv2.imshow('solved', x)
+cv2.imshow('Sudoku is solved!', x)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

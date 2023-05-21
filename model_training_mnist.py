@@ -6,6 +6,7 @@ from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Dropout
 import joblib
 import logging
+from config import EPOCH, BATCH_SIZE, LEARNING_RATE
 
 LOGGER = logging.getLogger(__name__)
 
@@ -65,9 +66,9 @@ def main():
     # Set up model configurations
     model = model_config()
 
-    E = 10
-    BS = 128
-    LR = 1e-3
+    E = EPOCH
+    BS = BATCH_SIZE
+    LR = LEARNING_RATE
     model.compile(optimizer=Adam(learning_rate=LR),
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
@@ -86,8 +87,8 @@ def main():
 
     epochs = range(1, len(test_loss) + 1)
 
+    # Plot accuracy 
     plt.figure(figsize=(12, 8))
-
     plt.subplot(121)
     plt.plot(epochs, test_loss, label='test_loss')
     plt.plot(epochs, training_loss, label='training_loss')
